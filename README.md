@@ -30,9 +30,29 @@ There are two parameters of behavorial significance:
 Use this parameter to specify the port(s) you desire to restrict. Maintain the json structure as in its description ( 22, 80 and 3389 are only kept as defaults):
 {"FocusOnPorts": "22,80,3389"}
 2. RemediationMode
-Toggle the remediation mode of the config rule. Use 'True' if you want the rule to trigger remediation action automatically. If you only want to view the compliance status and not remediate, keep it as 'False'. 
+Toggle the remediation mode of the config rule. Use 'True' if you want the rule to trigger remediation action automatically. If you only want to view the compliance status and not remediate, keep it as 'False'.
+
+Upon successful creation, the stack creates the below resources:
+<img width="679" alt="image" src="https://github.com/vgn-1/security-compliance/assets/109327302/87bb705d-5fd7-4874-9056-49a4a5463d54">
+
 
 Test the solution:
+1. In order to test the solution, navigate to AWS Config service console and look at the rule which just got created:
+<img width="997" alt="image" src="https://github.com/vgn-1/security-compliance/assets/109327302/9baef6f5-03cc-4d7d-ae0b-15ed491660c4">
+
+2. It should have already evaluated compliance of all security groups in the account/region. 
+Non-complaint like below:
+<img width="974" alt="image" src="https://github.com/vgn-1/security-compliance/assets/109327302/1ca32533-a6a5-4e37-b800-08c463657fa7">
+Compliant like below:
+<img width="971" alt="image" src="https://github.com/vgn-1/security-compliance/assets/109327302/c54c969d-c70e-4ffa-a777-ffe09b71ee0e">
+
+3. Create a security group for this testing and add the below rules:
+   <img width="856" alt="image" src="https://github.com/vgn-1/security-compliance/assets/109327302/87850008-186a-4f09-98af-4f7f8e18a963">
+
+4. Once the remediation action is run, only the marked ingress rules should be deleted and the rest remain intact.
+5. Run the remediation now, either by updating the stack, with RemediationMode=True, or manually like below:
+   <img width="971" alt="image" src="https://github.com/vgn-1/security-compliance/assets/109327302/11d86233-388e-415a-bb79-0798e690218a">
+6. Witness that revised security group ingresses:
 
 Summary:
 It is important to understand that there are always multiple ways to do a given task and this is especially true on aws cloud platform. 
