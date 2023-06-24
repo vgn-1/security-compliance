@@ -37,20 +37,21 @@ Upon successful creation, the stack creates the below resources:
 
 
 Test the solution:
-1. Update the stack with SourceInputParameters parameter changed to the value '{"FocusOnPorts": "1234,5678"}'. This is to limit the scope of testing to a security group and port of choice and avoid broader impact. 
-![image](https://github.com/vgn-1/security-compliance/assets/109327302/45ef7fdb-565f-4cad-b8b1-706b0b16389f)
+1. Update the stack with SourceInputParameters parameter changed to the value '{"FocusOnPorts": "1234,5678"}'.
+   This is to limit the scope of testing to a security group and port of choice and avoid broader impact. 
+   ![image](https://github.com/vgn-1/security-compliance/assets/109327302/45ef7fdb-565f-4cad-b8b1-706b0b16389f)
 
-2. Create a security group for this testing and add the below rules:
+3. Create a security group for this testing and add the below rules:
    <img width="856" alt="image" src="https://github.com/vgn-1/security-compliance/assets/109327302/87850008-186a-4f09-98af-4f7f8e18a963">
 
-3. Navigate to AWS Config service console and look at the rule which just got created/updated:
+4. Navigate to AWS Config service console and look at the rule which just got created/updated:
 ![image](https://github.com/vgn-1/security-compliance/assets/109327302/0d5b9797-c790-43ce-a73f-9d45165d081c)
 
 
-4. Evaluate the compliance with the given rule. This evaluation would run automatically every time a security group gets updated in your account.  Every revaluation leads to one backend lambda execution per security group. 
+5. Evaluate the compliance with the given rule. This evaluation would run automatically every time a security group gets updated in your account.  Every revaluation leads to one backend lambda execution per security group. 
 ![image](https://github.com/vgn-1/security-compliance/assets/109327302/2488d616-a5bb-46d8-a977-82d8551f4501)
 
-5. The compliance output would show only 1 security group as non-compliant, which we created in step#2 above.
+6. The compliance output would show only 1 security group as non-compliant, which we created in step#2 above.
    ![image](https://github.com/vgn-1/security-compliance/assets/109327302/25d9635c-4c06-4259-a2c8-da7ac0aeb11e)
 
 
