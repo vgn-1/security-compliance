@@ -37,21 +37,27 @@ Upon successful creation, the stack creates the below resources:
 
 
 Test the solution:
-1. In order to test the solution, navigate to AWS Config service console and look at the rule which just got created:
-<img width="997" alt="image" src="https://github.com/vgn-1/security-compliance/assets/109327302/9baef6f5-03cc-4d7d-ae0b-15ed491660c4">
+1. Update the stack with SourceInputParameters parameter changed to the value '{"FocusOnPorts": "1234,5678"}'. This is to limit the scope of testing to a security group and port of choice and avoid broader impact. 
+![image](https://github.com/vgn-1/security-compliance/assets/109327302/45ef7fdb-565f-4cad-b8b1-706b0b16389f)
 
-2. It should have already evaluated compliance of all security groups in the account/region. 
-Non-complaint like below:
-<img width="974" alt="image" src="https://github.com/vgn-1/security-compliance/assets/109327302/1ca32533-a6a5-4e37-b800-08c463657fa7">
-Compliant like below:
-<img width="971" alt="image" src="https://github.com/vgn-1/security-compliance/assets/109327302/c54c969d-c70e-4ffa-a777-ffe09b71ee0e">
-
-3. Create a security group for this testing and add the below rules:
+2. Create a security group for this testing and add the below rules:
    <img width="856" alt="image" src="https://github.com/vgn-1/security-compliance/assets/109327302/87850008-186a-4f09-98af-4f7f8e18a963">
 
+3. Navigate to AWS Config service console and look at the rule which just got created/updated:
+![image](https://github.com/vgn-1/security-compliance/assets/109327302/0d5b9797-c790-43ce-a73f-9d45165d081c)
+
+
+4. Evaluate the compliance with the given rule. This evaluation would run automatically every time a security group gets updated in your account.  Every revaluation leads to one backend lambda execution per security group. 
+![image](https://github.com/vgn-1/security-compliance/assets/109327302/2488d616-a5bb-46d8-a977-82d8551f4501)
+
+5. The compliance output would show only 1 security group as non-compliant, which we created in step#2 above.
+   ![image](https://github.com/vgn-1/security-compliance/assets/109327302/25d9635c-4c06-4259-a2c8-da7ac0aeb11e)
+
+
 4. Once the remediation action is run, only the marked ingress rules should be deleted and the rest remain intact.
-5. Run the remediation now, either by updating the stack, with RemediationMode=True, or manually like below:
-   <img width="971" alt="image" src="https://github.com/vgn-1/security-compliance/assets/109327302/11d86233-388e-415a-bb79-0798e690218a">
+5. Run the remediation as below. This would run automatically once the cloudformation stack is updated with parameter RemediationMode=True. 
+   ![image](https://github.com/vgn-1/security-compliance/assets/109327302/2cf670e3-4b1d-4972-ae78-8e4b39c0680b)
+
 6. Witness that revised security group ingresses:
 
 Summary:
