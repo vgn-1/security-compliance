@@ -58,7 +58,16 @@ Test the solution:
 5. Run the remediation as below. This would run automatically once the cloudformation stack is updated with parameter RemediationMode=True. 
    ![image](https://github.com/vgn-1/security-compliance/assets/109327302/2cf670e3-4b1d-4972-ae78-8e4b39c0680b)
 
-6. Witness that revised security group ingresses:
+6. The remediation action's workflow would look like below:
+   a. AWS config launches the remediation:
+     ![image](https://github.com/vgn-1/security-compliance/assets/109327302/3ca2c326-45ed-4193-8f88-c0993d13468a)
+   b. Systems Manager automation gets executed:
+     ![image](https://github.com/vgn-1/security-compliance/assets/109327302/a775942c-8912-43b4-a5fc-a66b05128bb1)
+   c. Two target ingress rules get removed from the security group and rest two are untouched:
+     ![image](https://github.com/vgn-1/security-compliance/assets/109327302/3222e147-bd7e-4506-8a59-89c89aef5e57)
+   d. AWS Config marks the security group as compliant:
+     ![image](https://github.com/vgn-1/security-compliance/assets/109327302/470ca8a7-54e3-4538-904b-2fc2445dc5f4)
+
 
 Summary:
 It is important to understand that there are always multiple ways to do a given task and this is especially true on aws cloud platform. 
