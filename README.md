@@ -39,7 +39,10 @@ Upon successful creation, the stack creates the below resources:
 Test the solution:
 1. Update the stack with SourceInputParameters parameter changed to the value '{"FocusOnPorts": "1234,5678"}'.
    This is to limit the scope of testing to a security group and port of choice and avoid broader impact. 
-   ![image](https://github.com/vgn-1/security-compliance/assets/109327302/45ef7fdb-565f-4cad-b8b1-706b0b16389f)
+
+   ![image](https://github.com/vgn-1/security-compliance/assets/109327302/ffc31b1c-36e4-4235-884f-d51864057f08)
+
+
 
 3. Create a security group for this testing and add the below rules:
    <img width="856" alt="image" src="https://github.com/vgn-1/security-compliance/assets/109327302/87850008-186a-4f09-98af-4f7f8e18a963">
